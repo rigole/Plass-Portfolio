@@ -162,4 +162,74 @@
         items: 1
     });
 
+    // Typing effect
+
+    // List of title
+     const _content = [
+        "FullStack Web Developper",
+        "Software Engineer",
+        "Data Scientist",
+        "Machine Learning Engineer"
+    ]
+
+    // Current sentence being processed
+    let _Part = 0;
+
+    // Character number of the current sentence being processed
+    let _part_index = 0;
+
+    //Holds the handle returned from setInterval
+    let _interval_val;
+
+    // Element that holds the text
+    let _element = document.querySelector("#text");
+
+    // Cursor element
+    const _cursor = document.querySelector("#cursor");
+
+    function Typing() {
+        let text = _content[_Part].substring(0, _part_index + 1);
+        _element.innerHTML = text;
+        _part_index++;
+
+        // If full sentence has been displayed then start to delete the sentence after some time
+        if (text === _content[_Part]){
+            // Hide the cursor
+            _cursor.style.display = 'none';
+            clearInterval(_interval_val);
+            setTimeout(function () {
+                _interval_val = setInterval(Delete, 50)
+            }, 1000);
+        }
+    }
+
+    // Implements deleting effect
+
+    function Delete() {
+      //  Get substring with 1 characater deleted
+         let text = _content[_Part].substring(0, _part_index - 1);
+        _element.innerHTML = text;
+        _part_index--;
+
+        // If sentence has been deleted then start to display the next sentence
+        if (text === '') {
+            clearInterval(_interval_val);
+
+            // If current sentence was last then display the first one, else move to the next
+            if (_Part == (_content.length - 1 )){
+                _Part = 0;
+            }
+            else {
+                _Part++;
+            }
+            _part_index = 0;
+
+            // Start to display the next sentence after some time
+            setTimeout(function () {
+                _cursor.style.display = 'inline-block';
+                _interval_val = setInterval(Typing, 100);
+            }, 200)
+        }
+    }
+   _interval_val=setInterval(Typing, 100);
 })(jQuery);

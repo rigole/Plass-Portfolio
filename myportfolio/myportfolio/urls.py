@@ -19,5 +19,6 @@ from mysite import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.homePage,name="homePage"),
+    path('',views.contact,name="contact"),
+
 ]

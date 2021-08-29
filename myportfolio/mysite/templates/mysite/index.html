@@ -612,7 +612,8 @@
       </div>
     </div>
 
-    <form action="" method="post" role="form" class="php-email-form mt-4">
+    <form action="" method="POST" role="form" class="php-email-form mt-4">
+        {% csrf_token %}
       <div class="form-row">
         <div class="col-md-6 form-group">
           <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required="required"   />

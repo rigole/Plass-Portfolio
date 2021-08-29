@@ -7,7 +7,7 @@
             var hash = this.hash;
             var target = $(hash);
             if (target.length) {
-                e.preventDefault();
+                /*e.preventDefault();*/
 
                 if ($(this).parents('.nav-menu, .mobile-nav').length) {
                     $('.nav-menu .active, .mobile-nav .active').removeClass('active');
@@ -232,4 +232,7 @@
         }
     }
    _interval_val=setInterval(Typing, 100);
+
+
+
 })(jQuery);
